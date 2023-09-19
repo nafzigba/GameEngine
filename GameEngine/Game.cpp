@@ -1,4 +1,6 @@
 #include "GameEngine.h"
+#include "BuildShaderProgram.h"
+#include "MeshComponent.h"
 
 #define VERBOSE false
 int mScreenWidth = 1024;
@@ -271,7 +273,21 @@ void Game::updateGame()
 void Game::renderScene()
 {
 	// Clear the color and depth buffers
-	
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// Render loop
+	// 
+	//glDrawArrays(subMesh.primitiveMode, 0, subMesh.count);
+
+	for (auto& mesh : MeshComponent::GetMeshComponents()) {
+
+		mesh->draw();
+	}
+
+	// Swap the front and back buffers
+	glfwSwapBuffers(renderWindow);
+
+
 
 } // end renderScene
 
@@ -286,6 +302,7 @@ void Game::shutdown()
 	
 	// Frees other glfw allocated resources
 	// TODO
+	deleteAllShaderPrograms();
 	windowCloseCallback(mWindow);
 	glfwTerminate();
 

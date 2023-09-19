@@ -7,19 +7,6 @@
 #include "MathLibsConstsFuncs.h"
 #include "GameObject.h"
 
-enum RENDER_MODE { ORDERED, INDEXED };
-
-
-struct SubMesh {
-	GLuint vao = GL_INVALID_VALUE; // ID for Vertex Array Object for the sub-mesh
-	GLuint vertexBuffer = GL_INVALID_VALUE; // ID for vertex data buffer for the sub-mesh
-	GLuint indexBuffer = GL_INVALID_VALUE; // ID for index buffer for the sub-mesh (if indexed rendering is used)
-	GLuint count = 0; // Either the number of vertices in the mesh or the number of indices
-	RENDER_MODE renderMode = INDEXED; // Render mode for the mesh. Either ORDERED or INDEXED
-	GLenum primitiveMode = GL_TRIANGLES; // Primitive mode for the mesh GL_POINTS, GL_LINES, etc.
-	//Material material;  // Material properties used to render the object
-}; // end SubMesh 
-
 //The initial screen width when the game starts.
 static const int initialScreenWidth = 1024;
 
@@ -188,7 +175,7 @@ protected:
 	 *
 	 * @brief	Renders the game scene.
 	 */
-	virtual void renderScene() = 0;
+	void renderScene();
 
 	/**
 	 * @fn	void Game::shutdown();

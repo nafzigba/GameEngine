@@ -11,4 +11,5 @@
 #include "Component.h"
 #include "BradleyComponent.h"
 #include "BuildShaderProgram.h"
+#include "TriangleMeshComponent.h"
 

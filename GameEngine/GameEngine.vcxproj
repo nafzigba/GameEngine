@@ -134,7 +134,9 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathLibsConstsFuncs.cpp" />
+    <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="SceneGraphNode.cpp" />
+    <ClCompile Include="TriangleMeshComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BradleyComponent.h" />
@@ -145,8 +147,10 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="MathLibsConstsFuncs.h" />
+    <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="Scene1.h" />
     <ClInclude Include="SceneGraphNode.h" />
+    <ClInclude Include="TriangleMeshComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\fragmentShader.glsl" />

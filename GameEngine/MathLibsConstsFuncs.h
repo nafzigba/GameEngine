@@ -65,6 +65,7 @@ using glm::quat;
 
 typedef std::shared_ptr<class GameObject> GameObjectPtr;
 typedef std::shared_ptr<class Component> ComponentPtr;
+typedef std::shared_ptr<class MeshComponent> MeshComponentPtr;
 
 namespace constants_and_types {
 

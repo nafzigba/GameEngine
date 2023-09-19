@@ -1,7 +1,7 @@
 #include "GameObject.h"
 
 #include "Component.h"
-//#include "MeshComponent.h"
+#include "MeshComponent.h"
 
 #include "Game.h"
 
@@ -122,7 +122,8 @@ void GameObject::addComponent(std::shared_ptr<Component> component)
 	if (component->getComponentType() == MESH) {
 
 		// Add the mesh to the static vector of MeshComponents
-		// TODO
+		MeshComponent::addMeshComp(std::static_pointer_cast<MeshComponent>(component));
+
 	}
 
 } // end addComponent
@@ -140,9 +141,8 @@ void GameObject::removeComponent(std::shared_ptr< Component> component)
 
 		// Check if the component is a Mesh
 		if (component->getComponentType() == MESH) {
-
 			// Remove the mesh from the static vector of MeshComponents
-			// TODO
+			MeshComponent::removeMeshComp(std::static_pointer_cast<MeshComponent>(component));
 		}
 
 		std::iter_swap(iter, components.end() - 1);
