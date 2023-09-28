@@ -1,7 +1,9 @@
 #pragma once
 #include "GameEngine.h"
-#include "BuildShaderProgram.h"
+#include "BuildShaderProgram.h" 
 #include "TriangleMeshComponent.h"
+#include "TriangleMeshComponent1.h"
+#include "TriangleMeshComponent2.h"
 
 
 class Scene1 : public Game
@@ -15,7 +17,7 @@ class Scene1 : public Game
 			{ GL_NONE, NULL } // signals that there are no more shaders 
 		};
 		GLuint shaderProgram = BuildShaderProgram(shaders);
-		
+
 
 		MeshComponentPtr triangle = std::make_shared<TriangleMeshComponent>(shaderProgram,500);
 		GameObjectPtr gameObject = std::make_shared<GameObject>();
@@ -25,9 +27,6 @@ class Scene1 : public Game
 		gameObject->addComponent(triangle);
 
 
-
-
-		
 		//subMesh.material = Material();
 
 		//initialize ptr of obj
@@ -37,10 +36,21 @@ class Scene1 : public Game
 		//gameObject->addComponent(myComponent);
 		//add objs to game
 		this->addChildGameObject(gameObject);
+		this->addChildGameObject(gameObject1);
 
 
 	} // end loadScene
-	
+	virtual void processGameInput()
+	{
+		Game::processGameInput();
+
+	}
+
+protected:
+	std::shared_ptr<GameObject> gameObject;
+	std::shared_ptr<GameObject> gameObject1;
+	std::shared_ptr<GameObject> gameObject2;
+	bool zero_keyDown = false;
 };
 /*
 

@@ -1,4 +1,5 @@
 #include "GameEngine.h"
+#include "GameEngine.h"
 #include "BuildShaderProgram.h"
 #include "MeshComponent.h"
 
@@ -8,6 +9,9 @@ int mScreenHeight = 768;
 GLFWwindow* mWindow;
 GLuint shaderProgram;
 SubMesh subMesh;
+
+
+
 
 //********************* Initialization Methods *****************************************
 
@@ -144,8 +148,8 @@ bool Game::initializeGraphics()
 	glEnable(GL_CULL_FACE);
 	glDebugMessageCallback(openglMessageCallback, 0);
 	// Cull back faces of polygons
-	glCullFace(GL_BACK);
-	glEnable(GL_CULL_FACE);
+	//glCullFace(GL_BACK);
+	//glEnable(GL_CULL_FACE);
 	// Render "filled in" polygons
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	// Set source and destination blending functions
@@ -153,7 +157,8 @@ bool Game::initializeGraphics()
 	// 
 	displayOpenGlInfo();
 
-	glClearColor(1.0f, 1.0f, 1.0f,1.0f);
+	glClearColor(1.0f, 1.0f, 0.0f,1.0f);
+
 
 	
 	
@@ -256,6 +261,9 @@ void Game::updateGame()
 
 		// Must be called in order for callback functions
 		// to be called for registered events.
+
+		
+
 		glfwPollEvents();
 
 		// Start an update traversal of all SceneGrapNode/GameObjects in the game
@@ -272,6 +280,11 @@ void Game::updateGame()
 
 void Game::renderScene()
 {
+
+	glm::mat4 viewTrans = glm::translate(vec3(0.0f, 0.0f, -2.0f));
+	glUniformMatrix4fv(101, 1, GL_FALSE, glm::value_ptr(viewTrans));
+
+
 	// Clear the color and depth buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -280,8 +293,12 @@ void Game::renderScene()
 	//glDrawArrays(subMesh.primitiveMode, 0, subMesh.count);
 
 	for (auto& mesh : MeshComponent::GetMeshComponents()) {
-
 		mesh->draw();
+		
+		glm::ivec2 winDimensions;
+		glfwGetWindowSize(renderWindow, &winDimensions.x, &winDimensions.y);
+		framebuffer_size_callback(renderWindow,winDimensions.x, winDimensions.y);
+
 	}
 
 	// Swap the front and back buffers
@@ -300,11 +317,12 @@ void Game::shutdown()
 
 	glfwDestroyWindow(mWindow);
 	//glfwDestroyWindow();
-	
 	// Frees other glfw allocated resources
 	// TODO
-	windowCloseCallback(mWindow);
 	deleteAllShaderPrograms();
+	//windowCloseCallback(mWindow);
+	glfwDestroyWindow(renderWindow);
+	glfwDestroyWindow(mWindow);
 	glfwTerminate();
 
 } // end shutDown
@@ -359,8 +377,10 @@ void Game::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	// Set parameters for the window transformation ...
 	// TODO
+	glViewport(0, 0, width, height);
 
-
+	glm::mat4 projTrans = glm::perspective((PI/6.0f), static_cast<float>(width) / height, 0.1f, 1000.0f);
+	glUniformMatrix4fv(100, 1, GL_FALSE, glm::value_ptr(projTrans));
 	// Set the projection transformation ...
 	// TODO
 
