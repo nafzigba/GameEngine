@@ -30,18 +30,31 @@ MeshComponent::~MeshComponent()
 // Preform drawing operations. 
 void MeshComponent::draw() const
 {
+	/*
+	glm::mat4 modelingTransformation = mat4(1.0f);
+		glUniformMatrix4fv(102, 1, GL_FALSE, glm::value_ptr(modelingTransformation));
+	*/
+	mat4 modelingTransformation = this->owningGameObject->getModelingTransformation(); 
+	//glm::mat4 modelingTransformation = mat4(1.0f);
+	glUniformMatrix4fv(102, 1, GL_FALSE, glm::value_ptr(modelingTransformation));
+
+
 	if (this->owningGameObject->getState() == ACTIVE) {
 
 		// Render all subMeshes
 		// TODO
-		glUseProgram(shaderProgram);
 		for (auto& subMesh : subMeshes) {
-
 			// Bind vertex array object for the subMesh
 			glBindVertexArray(subMesh.vao);
+			glUniform4fv(500, 1, glm::value_ptr(subMesh.material.basicColor));
 
 			// Trigger vertex fetch for ordered rendering 
-			glDrawArrays(subMesh.primitiveMode, 0, subMesh.count);
+			if (subMesh.renderMode == ORDERED) {
+				glDrawArrays(subMesh.primitiveMode, 0, subMesh.count);
+			}
+			else {
+				glDrawElements(subMesh.primitiveMode, subMesh.count, GL_UNSIGNED_INT, 0);
+			}
 		}
 		
 	}

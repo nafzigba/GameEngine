@@ -149,7 +149,8 @@ GLuint BuildShaderProgram(ShaderInfo* shaders)
 		if (VERBOSE) std::cout << std::endl << "Shader Program " << program << " successfully linked";
 
 	}
-	// Check whether the program can execute given the current pipeline state.
+	// Check whether the program can execute given the current pipeline 
+	// .
 	glValidateProgram(program);
 	GLint valid;
 	glGetProgramiv(program, GL_VALIDATE_STATUS, &valid);

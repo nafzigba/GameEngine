@@ -1,26 +1,20 @@
 // Targeting version 4.5 of GLSL. 
 #version 460 core
 
-mat4 projectionMatrix; 
-mat4 viewMatrix; 
-mat4 modelMatrix;
+layout (location = 100) uniform mat4 projectionMatrix; 
+layout (location = 101) uniform mat4 viewMatrix; 
+layout (location = 102) uniform mat4 modelMatrix;
 
-out vec4 vertexColor;
 
-// Declare a hard-coded array of positions
-const vec4 vertices[3] = vec4[3](vec4(-0.25, -0.25, 0.0, 1.0),
-								 vec4(0.25, -0.25, 0.0, 1.0),
-                                 vec4(0.0, 0.25, 0.0, 1.0));
+//layout (location = 500) uniform vec4 objectColor;
+out vec4 vsColor;
 
-// Declare a hard-coded array of colors
-const vec4 colors[3] = vec4[3](vec4(0.9, 0.1, 0.1, 1.0),
-                                 vec4(0.1, 0.9, 0.1, 1.0),
-                                 vec4(0.1, 0.1, 0.9, 1.0));
+layout(location = 0) in vec4 vertexPosition;
+//layout(location = 12) in vec4 vertexColor;
 
 void main()
 {
      // Index into our array using gl_VertexID
-     gl_Position = vertices[gl_VertexID];
-	 vertexColor = colors[gl_VertexID];
-
+    gl_Position = projectionMatrix * viewMatrix * modelMatrix* vertexPosition;
+    //vsColor = objectColor;
 }
