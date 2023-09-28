@@ -77,7 +77,7 @@ void Figure3::buildMesh() {
 	subMesh.renderMode = INDEXED;
 
 	// Create a material struct
-	subMesh.material.basicColor = GREEN_RGBA;
+	subMesh.material.basicColor = Material().basicColor;
 	// Add to the subMeshes that are part of the mesh component
 	subMeshes.push_back(subMesh);
 

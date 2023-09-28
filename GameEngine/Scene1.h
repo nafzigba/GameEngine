@@ -58,32 +58,44 @@ class Scene1 : public Game
 	{
 		Game::processGameInput();
 		//tri
-		if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_0) && GLFW_PRESS) {
-			zero_keyDown = !zero_keyDown;
+		if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_0) && zero_keyDown == false) {
+			zero_keyDown = true;
 			if (zero_keyDown) {
 				this->gameObject->setState(this->gameObject->getState() == ACTIVE ? PAUSED : ACTIVE);
 			}
 		}
+		else if (!glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_0)) {
+			zero_keyDown = false;
+		}
 		//fig1
-		if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_1) && GLFW_PRESS) {
-			zero_keyDown = !zero_keyDown;
-			if (zero_keyDown) {
+		if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_1) && one == false) {
+			one = true;
+			if (one) {
 				this->gameObject1->setState(this->gameObject1->getState() == ACTIVE ? PAUSED : ACTIVE);
 			}
 		}
+		else if (!glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_1)) {
+			one = false;
+		}
 		//fig2
-		if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_2) && GLFW_PRESS) {
-			zero_keyDown = !zero_keyDown;
-			if (zero_keyDown) {
+		if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_2) && two_keyDown == false) {
+			two_keyDown = true;
+			if (two_keyDown) {
 				this->gameObject2->setState(this->gameObject2->getState() == ACTIVE ? PAUSED : ACTIVE);
 			}
 		}
+		else if (!glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_2)) {
+			two_keyDown = false;
+		}
 		//fig3
-		if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_3) && GLFW_PRESS) {
-			zero_keyDown = !zero_keyDown;
-			if (zero_keyDown) {
+		if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_3) && three_keyDown == false) {
+			three_keyDown = true;
+			if (three_keyDown) {
 				this->gameObject3->setState(this->gameObject3->getState() == ACTIVE ? PAUSED : ACTIVE);
 			}
+		}
+		else if (!glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_3)) {
+			three_keyDown = false;
 		}
 	}
 

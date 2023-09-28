@@ -40,7 +40,7 @@ void Figure1::buildMesh() {
 	// or indexed (call gldrawelements
 	submesh.renderMode = ORDERED;
 	// create a material struct
-	submesh.material.basicColor = RED_RGBA;
+	submesh.material.basicColor = BLUE_RGBA;
 	// add the submesh to the vector of sub meshes
 	subMeshes.push_back(submesh);
 

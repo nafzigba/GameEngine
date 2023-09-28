@@ -281,7 +281,7 @@ void Game::updateGame()
 void Game::renderScene()
 {
 
-	glm::mat4 viewTrans = glm::translate(vec3(0.0f, 0.0f, -2.0f));
+	glm::mat4 viewTrans = glm::translate(vec3(0.0f, 0.0f, -4.0f));
 	glUniformMatrix4fv(101, 1, GL_FALSE, glm::value_ptr(viewTrans));
 
 
