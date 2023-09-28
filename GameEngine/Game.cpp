@@ -298,12 +298,13 @@ void Game::shutdown()
 	// Destroy the window
 	// TODO
 
+	glfwDestroyWindow(mWindow);
 	//glfwDestroyWindow();
 	
 	// Frees other glfw allocated resources
 	// TODO
-	deleteAllShaderPrograms();
 	windowCloseCallback(mWindow);
+	deleteAllShaderPrograms();
 	glfwTerminate();
 
 } // end shutDown
@@ -359,6 +360,7 @@ void Game::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	// Set parameters for the window transformation ...
 	// TODO
 
+
 	// Set the projection transformation ...
 	// TODO
 
@@ -407,6 +409,7 @@ static void framebufferResizeCallback(GLFWwindow* window, int width, int height)
 	Game* that = static_cast<Game*>(glfwGetWindowUserPointer(window));
 	that->framebuffer_size_callback(window, width, height);
 	cout << "Window resized to " << width << "x " << height << " pixels." << endl;
+
 }
 
 static void windowCloseCallback(GLFWwindow* window)
