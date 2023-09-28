@@ -130,6 +130,7 @@
     <ClCompile Include="BradleyComponent.cpp" />
     <ClCompile Include="BuildShaderProgram.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Figure1.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="BradleyComponent.h" />
     <ClInclude Include="BuildShaderProgram.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Figure1.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
