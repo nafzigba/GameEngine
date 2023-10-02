@@ -9,6 +9,33 @@
 
 using namespace constants_and_types;
 
+
+/**
+ * @struct	pntVertexData
+ *
+ * @brief	Structure for holding vertex data (position, normal, and texture
+ * 			coordinate for a single vertex.
+ */
+struct pntVertexData
+{
+	// Position of the vertex in Object coordinates
+	glm::vec4 m_pos;
+
+	// Normal vector for the vertex in Object coordinates
+	glm::vec3 m_normal;
+
+	// 2D vertex texture coordinate
+	glm::vec2 m_textCoord;
+
+	pntVertexData(glm::vec4 pos = ZERO_V4, glm::vec3 normal = ZERO_V3,
+		glm::vec2 textCoord = ZERO_V2)
+	{
+		m_pos = pos;
+		m_normal = normal;
+		m_textCoord = textCoord;
+	}
+};
+
 /**
  * @enum	RENDER_MODE
  *
@@ -85,6 +112,8 @@ public:
 	 */
 	virtual void buildMesh()=0;
 
+
+
 	/**
 	 * @fn	virtual void MeshComponent::draw() const;
 	 *
@@ -124,6 +153,38 @@ public:
 	static const std::vector<std::shared_ptr<class MeshComponent>> & GetMeshComponents();
 
 protected:
+
+	/**
+ * @fn	SubMesh MeshComponent::buildSubMesh(
+ *					const std::vector<pntVertexData>& vertexData);
+ *
+ * @brief	Builds one sub mesh that will be rendered using sequential
+ * 		rendering based the vertex data that are passed to it. The
+ *	 		vertex data is loaded into a buffer located in GPU memory.
+ *
+ * @param 	vertexData	Information describing the vertex.
+ *
+ * @returns	A SubMesh to be added to the subMeshese vector.
+ */
+	SubMesh buildSubMesh(const std::vector<pntVertexData>& vertexData);
+	/**
+ * @fn	SubMesh MeshComponent::buildSubMesh(
+ *					const std::vector<pntVertexData>& vertexData,
+ *					const std::vector<unsigned int>& indices);
+ *
+ * @brief	Builds one sub mesh  that will be rendered using indexed
+ *			rendering based the vertex data, indices, and material
+ *			properties that are passed to it. Both the vertex data and
+ * 		the indices are loaded into buffers located in GPU memory.
+ *
+ * @param 	vertexData	Information describing the vertex.
+ * @param 	indices   	indices for indexed rendering.
+ *
+ * @returns	A SubMesh.
+ */
+	SubMesh buildSubMesh(const std::vector<pntVertexData>& vertexData,
+		const std::vector<unsigned int>& indices);
+
 
 	/** @brief	Indentifier for the shader program used to render all sub-meshes */
 	GLuint shaderProgram = 0; 

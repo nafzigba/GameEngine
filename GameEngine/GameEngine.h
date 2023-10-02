@@ -13,5 +13,6 @@
 #include "BuildShaderProgram.h"
 #include "TriangleMeshComponent.h"
 #include "SharedTransformations.h"
+#include "SphereMeshComponent.h"
 
 

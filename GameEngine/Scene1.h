@@ -20,11 +20,15 @@ class Scene1 : public Game
 		GLuint shaderProgram = BuildShaderProgram(shaders);
 		SharedTransformations::setUniformBlockForShader(shaderProgram);
 
+		Material sphereMat;
+		sphereMat.basicColor = vec4(0.5f,0.6f,1.0f,1.0f);
+
 
 		MeshComponentPtr triangle = std::make_shared<TriangleMeshComponent>(shaderProgram, 500);
 		MeshComponentPtr fig1 = std::make_shared<Figure1>(shaderProgram, 1);
 		MeshComponentPtr fig2 = std::make_shared<Figure2>(shaderProgram, 2);
 		MeshComponentPtr fig3 = std::make_shared<Figure3>(shaderProgram, 3);
+		MeshComponentPtr figS = std::make_shared<SphereMeshComponent>(shaderProgram, sphereMat, 0.5f);
 
 		glUseProgram(shaderProgram);
 
@@ -33,11 +37,13 @@ class Scene1 : public Game
 		gameObject1 = std::make_shared<GameObject>();
 		gameObject2 = std::make_shared<GameObject>();
 		gameObject3 = std::make_shared<GameObject>();
+		sphere = std::make_shared<GameObject>();
 
 		MeshComponent::addMeshComp(triangle);
 		MeshComponent::addMeshComp(fig1);
 		MeshComponent::addMeshComp(fig2);
 		MeshComponent::addMeshComp(fig3);
+		MeshComponent::addMeshComp(figS);
 
 		gameObject->addComponent(triangle);
 		this->gameObject->setState(PAUSED);
@@ -47,11 +53,14 @@ class Scene1 : public Game
 		this->gameObject2->setState(PAUSED);
 		gameObject3->addComponent(fig3);
 		this->gameObject3->setState(PAUSED);
+		sphere->addComponent(figS);
+		this->sphere->setState(PAUSED);
 
 		this->addChildGameObject(gameObject);
 		this->addChildGameObject(gameObject1);
 		this->addChildGameObject(gameObject2);
 		this->addChildGameObject(gameObject3);
+		this->addChildGameObject(sphere);
 
 
 	} // end loadScene
@@ -98,6 +107,15 @@ class Scene1 : public Game
 		else if (!glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_3)) {
 			three_keyDown = false;
 		}
+		if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_S) && s_keyDown == false) {
+			s_keyDown = true;
+			if (s_keyDown) {
+				this->sphere->setState(this->sphere->getState() == ACTIVE ? PAUSED : ACTIVE);
+			}
+		}
+		else if (!glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_S)) {
+			s_keyDown = false;
+		}
 	}
 
 protected:
@@ -105,11 +123,12 @@ protected:
 	std::shared_ptr<GameObject> gameObject1;
 	std::shared_ptr<GameObject> gameObject2;
 	std::shared_ptr<GameObject> gameObject3;
+	std::shared_ptr<GameObject> sphere;
 	bool zero_keyDown = false;
 	bool one = false;
 	bool two_keyDown = false;
 	bool three_keyDown = false;
-
+	bool s_keyDown = false;
 };
 /*
 
