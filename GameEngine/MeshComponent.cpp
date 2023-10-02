@@ -1,4 +1,5 @@
 #include "MeshComponent.h"
+#include "SharedTransformations.h"
 
 #define VERBOSE false
 
@@ -13,14 +14,14 @@ MeshComponent::~MeshComponent()
 	for (auto& subMesh : subMeshes) {
 		
 		// Delete the VAO
-		// TODO
-
+		glDeleteVertexArrays(1, &subMesh.vao);
 		// Delete the vertex buffer
-		// TODO
+		glDeleteBuffers(1, &subMesh.vertexBuffer);
 
 		// Delete the index buffer
 		if (subMesh.renderMode == INDEXED) {
 			// TODO
+			glDeleteVertexArrays(1, &subMesh.indexBuffer);
 		}
 	}
 	
@@ -31,13 +32,14 @@ MeshComponent::~MeshComponent()
 void MeshComponent::draw() const
 {
 	/*
-	glm::mat4 modelingTransformation = mat4(1.0f);
+	glm::mat4 
+	ingTransformation = mat4(1.0f);
 		glUniformMatrix4fv(102, 1, GL_FALSE, glm::value_ptr(modelingTransformation));
 	*/
 	mat4 modelingTransformation = this->owningGameObject->getModelingTransformation(); 
 	//glm::mat4 modelingTransformation = mat4(1.0f);
-	glUniformMatrix4fv(102, 1, GL_FALSE, glm::value_ptr(modelingTransformation));
-
+	//glUniformMatrix4fv(102, 1, GL_FALSE, glm::value_ptr(modelingTransformation));
+	SharedTransformations::setModelingMatrix(modelingTransformation);
 
 	if (this->owningGameObject->getState() == ACTIVE) {
 
@@ -46,6 +48,7 @@ void MeshComponent::draw() const
 		for (auto& subMesh : subMeshes) {
 			// Bind vertex array object for the subMesh
 			glBindVertexArray(subMesh.vao);
+			
 			glUniform4fv(500, 1, glm::value_ptr(subMesh.material.basicColor));
 
 			// Trigger vertex fetch for ordered rendering 

@@ -18,6 +18,7 @@ class Scene1 : public Game
 			{ GL_NONE, NULL } // signals that there are no more shaders 
 		};
 		GLuint shaderProgram = BuildShaderProgram(shaders);
+		SharedTransformations::setUniformBlockForShader(shaderProgram);
 
 
 		MeshComponentPtr triangle = std::make_shared<TriangleMeshComponent>(shaderProgram, 500);

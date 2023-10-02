@@ -2,6 +2,7 @@
 #include "GameEngine.h"
 #include "BuildShaderProgram.h"
 #include "MeshComponent.h"
+#include "SharedTransformations.h"
 
 #define VERBOSE false
 int mScreenWidth = 1024;
@@ -282,7 +283,9 @@ void Game::renderScene()
 {
 
 	glm::mat4 viewTrans = glm::translate(vec3(0.0f, 0.0f, -4.0f));
-	glUniformMatrix4fv(101, 1, GL_FALSE, glm::value_ptr(viewTrans));
+	SharedTransformations::setViewMatrix(viewTrans);
+
+	//glUniformMatrix4fv(101, 1, GL_FALSE, glm::value_ptr(viewTrans));
 
 
 	// Clear the color and depth buffers
@@ -380,7 +383,8 @@ void Game::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, width, height);
 
 	glm::mat4 projTrans = glm::perspective((PI/6.0f), static_cast<float>(width) / height, 0.1f, 1000.0f);
-	glUniformMatrix4fv(100, 1, GL_FALSE, glm::value_ptr(projTrans));
+	SharedTransformations::setProjectionMatrix(projTrans);
+	//glUniformMatrix4fv(100, 1, GL_FALSE, glm::value_ptr(projTrans));
 	// Set the projection transformation ...
 	// TODO
 

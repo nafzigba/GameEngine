@@ -44,7 +44,10 @@ void GameObject::initialize()
 	// Make sure the any initialization of position, orientation
 	// or scale done by Components is accounted for on the first 
 	// frame
-	this->updateModelingTransformation();
+	this->update
+		
+		
+		ingTransformation();
 
 	for (auto& gameObject : this->children) {
 

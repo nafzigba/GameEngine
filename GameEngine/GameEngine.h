@@ -12,4 +12,6 @@
 #include "BradleyComponent.h"
 #include "BuildShaderProgram.h"
 #include "TriangleMeshComponent.h"
+#include "SharedTransformations.h"
+
 
