@@ -20,6 +20,7 @@ protected:
 	void initializeBottomSubMesh();
 	void initializeBodySubMesh();
 
+
 	std::vector<pntVertexData> createStackVertexData(float startingSliceAngle, float stackAngle);
 
 	std::vector<pntVertexData> upper;

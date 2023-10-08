@@ -22,7 +22,8 @@ glm::vec2 getSphericalTextCoords(float sliceAngle, float stackAngle)
 	return glm::vec2(s, t);
 }
 
-SphereMeshComponent::SphereMeshComponent(GLuint shaderProgram, Material mat, float radius, int stacks, int slices, int updateOrder)
+SphereMeshComponent::SphereMeshComponent(GLuint shaderProgram, Material mat, float radius, 
+	int stacks, int slices, int updateOrder)
 	: MeshComponent(shaderProgram, updateOrder), sphereMat(mat), radius(radius), stacks(stacks), slices(slices)
 {
 	sliceInc = (2.0f * PI) / slices;
@@ -153,7 +154,6 @@ std::vector<pntVertexData> SphereMeshComponent::createStackVertexData(float star
 
 		vec4 v0 = sphericalToCartesian(sliceAngle, stackAngle, radius);
 		vec2 t0 = getSphericalTextCoords(sliceAngle, stackAngle);
-
 		stackVertexData.push_back( pntVertexData(v0, glm::normalize(v0).xyz, t0) );
 
 		sliceAngle += sliceInc;

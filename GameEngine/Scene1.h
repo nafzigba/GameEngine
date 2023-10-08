@@ -12,6 +12,7 @@ class Scene1 : public Game
 
 	void loadScene()
 	{
+		/*
 		ShaderInfo shaders[] = {
 			{ GL_VERTEX_SHADER, "shader/vertexShader.glsl" },
 			{ GL_FRAGMENT_SHADER, "shader/fragmentShader.glsl" },
@@ -21,14 +22,15 @@ class Scene1 : public Game
 		SharedTransformations::setUniformBlockForShader(shaderProgram);
 
 		Material sphereMat;
-		sphereMat.basicColor = vec4(0.5f,0.6f,1.0f,1.0f);
+		//sphereMat.basicColor = vec4(0.5f,0.6f,1.0f,1.0f);
 
 
 		MeshComponentPtr triangle = std::make_shared<TriangleMeshComponent>(shaderProgram, 500);
 		MeshComponentPtr fig1 = std::make_shared<Figure1>(shaderProgram, 1);
 		MeshComponentPtr fig2 = std::make_shared<Figure2>(shaderProgram, 2);
 		MeshComponentPtr fig3 = std::make_shared<Figure3>(shaderProgram, 3);
-		MeshComponentPtr figS = std::make_shared<SphereMeshComponent>(shaderProgram, sphereMat, 0.5f);
+		MeshComponentPtr figS = std::make_shared<SphereMeshComponent>(shaderProgram, sphereMat, 0.5f, 1.0f,12,16,100,-1.0f,.05f);
+		MeshComponentPtr figS2 = std::make_shared<SphereMeshComponent>(shaderProgram, sphereMat, 0.5f, 1.0f, 12, 16, 100, 1.0f, .05f);
 
 		glUseProgram(shaderProgram);
 
@@ -38,12 +40,14 @@ class Scene1 : public Game
 		gameObject2 = std::make_shared<GameObject>();
 		gameObject3 = std::make_shared<GameObject>();
 		sphere = std::make_shared<GameObject>();
+		sphere2 = std::make_shared<GameObject>();
 
 		MeshComponent::addMeshComp(triangle);
 		MeshComponent::addMeshComp(fig1);
 		MeshComponent::addMeshComp(fig2);
 		MeshComponent::addMeshComp(fig3);
 		MeshComponent::addMeshComp(figS);
+		MeshComponent::addMeshComp(figS2);
 
 		gameObject->addComponent(triangle);
 		this->gameObject->setState(PAUSED);
@@ -55,13 +59,16 @@ class Scene1 : public Game
 		this->gameObject3->setState(PAUSED);
 		sphere->addComponent(figS);
 		this->sphere->setState(PAUSED);
+		sphere2->addComponent(figS2);
+		this->sphere2->setState(PAUSED);
 
 		this->addChildGameObject(gameObject);
 		this->addChildGameObject(gameObject1);
 		this->addChildGameObject(gameObject2);
 		this->addChildGameObject(gameObject3);
 		this->addChildGameObject(sphere);
-
+		this->addChildGameObject(sphere2);
+		*/
 
 	} // end loadScene
 	virtual void processGameInput()
@@ -111,6 +118,7 @@ class Scene1 : public Game
 			s_keyDown = true;
 			if (s_keyDown) {
 				this->sphere->setState(this->sphere->getState() == ACTIVE ? PAUSED : ACTIVE);
+				this->sphere2->setState(this->sphere->getState() == ACTIVE ? PAUSED : ACTIVE);
 			}
 		}
 		else if (!glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_S)) {
@@ -124,6 +132,7 @@ protected:
 	std::shared_ptr<GameObject> gameObject2;
 	std::shared_ptr<GameObject> gameObject3;
 	std::shared_ptr<GameObject> sphere;
+	std::shared_ptr<GameObject> sphere2;
 	bool zero_keyDown = false;
 	bool one = false;
 	bool two_keyDown = false;

@@ -38,21 +38,7 @@ vec4 lightPos = vec4(10.0f,10.0f,10.0f,1.0f);
 
 void main()
 {
-	ambientColor = vec4(0.0f,.5f,.10f,1.0f);
-	diffuseColor = vec4(0.0f,1.0f,.10f,1.0f);
-	specularColor = vec4(1.0f,1.0f,1.0f,1.0f);
-
-	ambientMat = vec4(0.0f,1.0f,0.0f,1.0f);
-	diffuseMat = vec4(0.0f,1.0f,0.0f,1.0f);
-	specularMat = vec4(0.9f,1.0f,0.9f,1.0f);
-	//emmissiveMat = vec4(0.1f,0.1f,0.1f,1.0f);
-
-	specularExp = 256;
-	vec4 illumColor = emmissiveMat;
-	//vec3 lightVector = vec3(0.0f,0.0f,-1.0f);
-	illumColor += ambientColor*ambientMat;
-	vec3 lightVector = normalize(lightPos.xyz-worldPosition.xyz);
-	illumColor += max(0,dot(lightVector,worldNormal)) * diffuseColor * diffuseMat; 
+	
 	//illumColor += specularColor*specularMat;
 	
 	fragmentColor = illumColor;

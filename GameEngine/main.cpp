@@ -1,9 +1,10 @@
+#include "Proj1Scene.h"
 #include "Scene1.h"
 
 int main()
 {
 	// Instantiate an object of the Game class
-	Scene1 game;
+	Proj1Scene game;
 
 	// Run the game
 	game.runGame();

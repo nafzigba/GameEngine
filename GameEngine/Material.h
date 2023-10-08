@@ -6,5 +6,11 @@ using namespace constants_and_types;
 
 struct Material
 {
-	vec4 basicColor = vec4(0.1f, 0.2f, 0.0f, 0.5f);
+	vec4 basicColor;
+	vec4 ambientMat;
+	vec4 diffuseMat;
+	vec4 specularMat;
+	vec4 emmissiveMat;
+	float specularExp;
+
 };
