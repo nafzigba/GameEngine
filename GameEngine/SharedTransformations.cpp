@@ -20,7 +20,6 @@ const std::string SharedTransformations::transformBlockName = "transformBlock";
 
 const std::string SharedTransformations::eyeBlockName = "worldEyeBlock";
 
-
 void SharedTransformations::setUniformBlockForShader(GLuint shaderProgram)
 {
 	std::vector<std::string> projViewMemberNames = { "modelMatrix", "normalModelMatrix", "viewMatrix", "projectionMatrix"};

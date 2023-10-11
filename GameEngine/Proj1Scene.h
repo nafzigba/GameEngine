@@ -2,7 +2,6 @@
 #include "GameEngine.h"
 #include "BuildShaderProgram.h"
 
-
 class Proj1Scene : public Game
 {
 	void loadScene()
@@ -17,27 +16,28 @@ class Proj1Scene : public Game
 			{ GL_FRAGMENT_SHADER, "shader/fragmentShader1.glsl" },
 			{ GL_NONE, NULL } // signals that there are no more shaders 
 		};
+
 		GLuint shaderProgram1 = BuildShaderProgram(shaders1);
 		GLuint shaderProgram2 = BuildShaderProgram(shaders2);
 		SharedTransformations::setUniformBlockForShader(shaderProgram1);
 		SharedTransformations::setUniformBlockForShader(shaderProgram2);
+		SharedMaterials::setUniformBlockForShader(shaderProgram1);
+
 		vector<string> matBlockItems;
 		string name = "MaterialBlock";
 		matBlockItems.push_back("Material");
 		//SharedUniformBlock s;
 		//std::vector<GLint> layouts = SharedUniformBlock::setUniformBlockForShader(shaderProgram1,name, matBlockItems);
-
 		//glUseProgram(shaderProgram2);
 		cout << "here" << endl;
-
 		vector<MeshComponentPtr> figs;
 		Material sphereMat;
 		sphereMat.basicColor = vec4(0.5f, 0.6f, 1.0f, 1.0f);
 		for (int i = 1; i < 5; i++) {
 			//MeshComponentPtr fig = std::make_shared<SphereMeshComponent>(shaderProgram1, sphereMat, 0.5f);
-			MeshComponentPtr fig = std::make_shared<SphereMeshComponent>(shaderProgram1, sphereMat, 0.25f,2*i+2,3*i+3,i);
+			MeshComponentPtr fig = std::make_shared<SphereMeshComponent>(shaderProgram1, sphereMat, 0.25f,2.0f*i+2.0f,3.0f*i+3.0f,i);
 			glUseProgram(shaderProgram1);
-			std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>();;
+			std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>();
 			MeshComponent::addMeshComp(fig);
 			gameObject->addComponent(fig);
 			gameObject->setState(PAUSED);
@@ -47,12 +47,15 @@ class Proj1Scene : public Game
 			spheres.push_back(gameObject);
 			this->addChildGameObject(gameObject);
 		}
-		
+
+		Material sphereMat2;
+		sphereMat2.basicColor = vec4(0.5f, 0.6f, 0.0f, 1.0f);
+
 		for (int i = 1; i < 5; i++) {
 			//MeshComponentPtr fig = std::make_shared<SphereMeshComponent>(shaderProgram1, sphereMat, 0.5f);
-			MeshComponentPtr fig = std::make_shared<SphereMeshComponent>(shaderProgram1, sphereMat, 0.25f, 3 * i + 3, 4 * i + 4, i);
+			MeshComponentPtr fig = std::make_shared<SphereMeshComponent>(shaderProgram1, sphereMat2, 0.25f, 3 * i + 3, 4 * i + 4, i);
 			glUseProgram(shaderProgram1);
-			std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>();;
+			std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>();
 			MeshComponent::addMeshComp(fig);
 			gameObject->addComponent(fig);
 			gameObject->setState(PAUSED);
@@ -62,7 +65,6 @@ class Proj1Scene : public Game
 			spheres.push_back(gameObject);
 			this->addChildGameObject(gameObject);
 		}
-
 	}
 	virtual void processGameInput()
 	{

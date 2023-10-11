@@ -45,7 +45,7 @@ void main()
 	ambientMat = vec4(0.0f,1.0f,0.0f,1.0f);
 	diffuseMat = vec4(0.0f,1.0f,0.0f,1.0f);
 	specularMat = vec4(0.9f,1.0f,0.9f,1.0f);
-	//emmissiveMat = vec4(0.1f,0.1f,0.1f,1.0f);
+	emmissiveMat = vec4(0.1f,0.1f,0.1f,1.0f);
 
 	specularExp = 256;
 	vec4 illumColor = emmissiveMat;

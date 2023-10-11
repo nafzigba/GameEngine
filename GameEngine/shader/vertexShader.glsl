@@ -8,7 +8,7 @@ layout(shared) uniform transformBlock
 	mat4 viewMatrix;
 	mat4 projectionMatrix;
 };
-layout (shared) uniform materialBlock
+layout (shared) uniform lightBlock
 {
 	vec4 ambientColor;
 	vec4 diffuseColor;
@@ -23,7 +23,7 @@ struct Material
 	float specularExp;
 };
 
-layout (shared) uniform MaterialBlock
+layout (shared) uniform materialBlock
 {
 	Material obj;
 };

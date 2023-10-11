@@ -284,40 +284,25 @@ void Game::renderScene()
 
 	glm::mat4 viewTrans = glm::translate(vec3(0.0f, 0.0f, -4.0f));
 	SharedTransformations::setViewMatrix(viewTrans);
-
 	//glUniformMatrix4fv(101, 1, GL_FALSE, glm::value_ptr(viewTrans));
-
-
 	// Clear the color and depth buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	// Render loop
-	// 
 	//glDrawArrays(subMesh.primitiveMode, 0, subMesh.count);
-
 	for (auto& mesh : MeshComponent::GetMeshComponents()) {
 		mesh->draw();
-		
 		glm::ivec2 winDimensions;
 		glfwGetWindowSize(renderWindow, &winDimensions.x, &winDimensions.y);
 		framebuffer_size_callback(renderWindow,winDimensions.x, winDimensions.y);
-
 	}
-
 	// Swap the front and back buffers
 	glfwSwapBuffers(renderWindow);
-
-
-
 } // end renderScene
-
 //********************* Shutdown Methods *****************************************
-
 void Game::shutdown()
 {
 	// Destroy the window
 	// TODO
-
 	glfwDestroyWindow(mWindow);
 	//glfwDestroyWindow();
 	// Frees other glfw allocated resources
@@ -327,7 +312,6 @@ void Game::shutdown()
 	glfwDestroyWindow(renderWindow);
 	glfwDestroyWindow(mWindow);
 	glfwTerminate();
-
 } // end shutDown
 
 //********************* Accessor Methods *****************************************
@@ -387,8 +371,6 @@ void Game::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	//glUniformMatrix4fv(100, 1, GL_FALSE, glm::value_ptr(projTrans));
 	// Set the projection transformation ...
 	// TODO
-
-
 } // end framebuffer_size_callback
 
 //********************* static function definitions *****************************************
