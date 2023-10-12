@@ -3,6 +3,7 @@
 #include "BuildShaderProgram.h"
 #include "MeshComponent.h"
 #include "SharedTransformations.h"
+#include "SharedMaterials.h"
 
 #define VERBOSE false
 int mScreenWidth = 1024;

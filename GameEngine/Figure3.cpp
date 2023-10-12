@@ -51,7 +51,6 @@ void Figure3::buildMesh() {
 	SubMesh subMesh = buildSubMesh(vertexData,indices);
 	subMesh.primitiveMode = GL_TRIANGLES;
 	// Create a material struct
-	subMesh.material.basicColor = Material().basicColor;
 	// Add to the subMeshes that are part of the mesh component
 	subMeshes.push_back(subMesh);
 

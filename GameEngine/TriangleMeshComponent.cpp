@@ -93,7 +93,6 @@ void TriangleMeshComponent::buildMesh() {
 	// or indexed (call gldrawelements
 	submesh.renderMode = ORDERED;
 	// create a material struct
-	submesh.material.basicColor = GREEN_RGBA;
 	// add the submesh to the vector of sub meshes
 	subMeshes.push_back(submesh);
 }

@@ -1,5 +1,7 @@
 #include "MeshComponent.h"
 #include "SharedTransformations.h"
+#include "SharedMaterials.h"
+
 
 #define VERBOSE false
 
@@ -49,7 +51,7 @@ void MeshComponent::draw() const
 			// Bind vertex array object for the subMesh
 			glBindVertexArray(subMesh.vao);
 			
-			glUniform4fv(500, 1, glm::value_ptr(subMesh.material.basicColor));
+			SharedMaterials::setMaterial(subMesh.material);
 
 			// Trigger vertex fetch for ordered rendering 
 			if (subMesh.renderMode == ORDERED) {

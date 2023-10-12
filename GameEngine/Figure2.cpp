@@ -25,7 +25,6 @@ void Figure2::buildMesh() {
 	// set the render mode for either ordered (call gldrawarrays)
 	// or indexed (call gldrawelements
 	// create a material struct
-	subMesh.material.basicColor = RED_RGBA;
 	// add the submesh to the vector of sub meshes
 	subMeshes.push_back(subMesh);
 

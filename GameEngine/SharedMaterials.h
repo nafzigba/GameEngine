@@ -1,5 +1,5 @@
-#ifndef _SHARED_PROJECTION_AND_VIEWING_H_
-#define	_SHARED_PROJECTION_AND_VIEWING_H_
+#ifndef _SHARED_MATERIAL_H_
+#define	_SHARED_MATERIAL_H_
 
 #include "SharedUniformBlock.h"
 #include "Material.h"
@@ -41,35 +41,11 @@ public:
 	// projectionViewBlock and worldEyeBlock uniform blocks.
 	static void setUniformBlockForShader(GLuint shaderProgram);
 
-	// Accessor for the current projection matrix
-	static glm::mat4 getProjectionMatrix();
+	static void setMaterial(Material m);
 
-	// Mutator for the projection matrix. Sets the projection
-	// matrix in the buffer.
-	static void setProjectionMatrix(glm::mat4 projectionMatrix);
+	static Material getMaterial();
 
-	// Accessor for the current viewing matrix
-	static glm::mat4 getViewMatrix();
-
-	// Mutator for the viewing matrix. Sets the viewing
-	// matrix in the buffer. Also sets the world eye position
-	static void setViewMatrix(glm::mat4 viewMatrix);
-
-	// Accessor for the current modeling matrix
-	static glm::mat4 getModelingMatrix();
-
-	// Mutator for the modeling matrix. Sets the modeling transformation
-	// for both the vertex positions and normals in the buffer. 
-	static void setModelingMatrix(glm::mat4 modelingMatrix);
-
-	static void setAmbientColor(glm::vec4 ambientColor);
-	static glm::vec4 getAmbientColor();
-	static void setBasicColor(glm::vec4 basicColor);
-	static glm::vec4 getBasicColor();
-	static void setDiffuseMat(glm::vec4 modelingMatrix);
-	static glm::vec4 getDiffuseMat();
-
-	void setMaterial(Material m);
+	static void setLight(vec4 ambientColor, vec4 diffuseColor, vec4 specularColor, vec4 posLight, vec4 dirLight);
 
 
 
@@ -83,7 +59,7 @@ protected:
 	static GLuint lightPositionLocation;
 
 	  // Byte offset of the eye position
-
+	static std::vector<GLint> lightPositionLocations;
 
 	static const std::string materialBlockName;
 
@@ -97,5 +73,4 @@ protected:
 
 }; // end SharedProjectionAndViewing class
 
-#endif // _SHARED_PROJECTION_AND_VIEWING_H_
-
+#endif //_SHARED_MATERIAL_H_
