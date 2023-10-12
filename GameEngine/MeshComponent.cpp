@@ -49,6 +49,7 @@ void MeshComponent::draw() const
 		// TODO
 		for (auto& subMesh : subMeshes) {
 			// Bind vertex array object for the subMesh
+			glUseProgram(this->shaderProgram);
 			glBindVertexArray(subMesh.vao);
 			
 			SharedMaterials::setMaterial(subMesh.material);
