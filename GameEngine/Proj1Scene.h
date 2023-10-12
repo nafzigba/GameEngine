@@ -70,7 +70,7 @@ class Proj1Scene : public Game
 
 		for (int i = 1; i < 5; i++) {
 			//MeshComponentPtr fig = std::make_shared<SphereMeshComponent>(shaderProgram1, sphereMat, 0.5f);
-			MeshComponentPtr fig = std::make_shared<SphereMeshComponent>(shaderProgram2, sphereMat2, 0.25f, 2 * i + 1, 3 * i + 1, i);
+			MeshComponentPtr fig = std::make_shared<SphereMeshComponent>(shaderProgram2, sphereMat2, 0.25f, 4 * i + 4, 5 * i + 5, i);
 			glUseProgram(shaderProgram1);
 			std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>();
 			MeshComponent::addMeshComp(fig);
