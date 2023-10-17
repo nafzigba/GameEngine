@@ -1,15 +1,12 @@
 #include "SharedMaterials.h"
 
-
 std::vector<GLint> SharedMaterials::matLocations;
 Material SharedMaterials::material;
 
 GLuint SharedMaterials::normalLightLocation; // Byte offset of the modeling matrix to transform normal vectors
-
-
 std::vector<GLint> SharedMaterials::lightPositionLocations;  // Byte offset of the eye position
 
-SharedUniformBlock SharedMaterials::matColorBlock(matColorBlockBindingPoint);
+SharedUniformBlock SharedMaterials::matColorBlock(15);
 SharedUniformBlock SharedMaterials::lightBlock(lightBlockBindingPoint);
 
 const std::string SharedMaterials::materialBlockName = "materialBlock";
@@ -18,9 +15,8 @@ const std::string SharedMaterials::lightBlockName = "lightBlock";
 
 void SharedMaterials::setUniformBlockForShader(GLuint shaderProgram)
 {
-	std::vector<std::string> matMemberNames = {"ambientColor", "diffuseMat", "specularMat", "emmissiveMat", "specularExp"};
-	//std::vector<std::string> matMemberNames = {"obj"};
-
+	std::vector<std::string> matMemberNames = {"ambientMat", "diffuseMat", "specularMat", "emmissiveMat", "specularExp"};
+	//std::vector<std::string> matMemberNames = {"mattttt"};
 	matLocations = matColorBlock.setUniformBlockForShader(shaderProgram, materialBlockName, matMemberNames);
 
 	std::vector<std::string> lightBlockNames = { "ambientColor", "diffuseColor", "specularColor", "posLight", "dirLight"};
@@ -31,16 +27,18 @@ void SharedMaterials::setUniformBlockForShader(GLuint shaderProgram)
 
 } // end setUniformBlockForShader
 
-
-void SharedMaterials::setMaterial(Material m) {
+void SharedMaterials::setMaterial(const Material& m) {
 	if (matColorBlock.getSize() > 0) {
 		glBindBuffer(GL_UNIFORM_BUFFER, matColorBlock.getBuffer());
-		material = m;
+		//cout << matLocations[0] << endl;
+		glBufferData(GL_UNIFORM_BUFFER, sizeof(Material), &m,GL_STATIC_DRAW);
+		/*
 		glBufferSubData(GL_UNIFORM_BUFFER, matLocations[0], sizeof(vec4), glm::value_ptr(material.ambientMat));
 		glBufferSubData(GL_UNIFORM_BUFFER, matLocations[1], sizeof(vec4), glm::value_ptr(material.diffuseMat));
 		glBufferSubData(GL_UNIFORM_BUFFER, matLocations[2], sizeof(vec4), glm::value_ptr(material.specularMat));
 		glBufferSubData(GL_UNIFORM_BUFFER, matLocations[3], sizeof(vec4), glm::value_ptr(material.emmissiveMat));
 		glBufferSubData(GL_UNIFORM_BUFFER, matLocations[4], sizeof(float), &material.specularExp);
+		*/
 	}
 	glBindBuffer(GL_UNIFORM_BUFFER, 0);
 } 

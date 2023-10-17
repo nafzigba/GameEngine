@@ -41,9 +41,7 @@ public:
 	// projectionViewBlock and worldEyeBlock uniform blocks.
 	static void setUniformBlockForShader(GLuint shaderProgram);
 
-	static void setMaterial(Material m);
-
-	static Material getMaterial();
+	static void setMaterial(const Material& m);
 
 	static void setLight(vec4 ambientColor, vec4 diffuseColor, vec4 specularColor, vec4 posLight, vec4 dirLight);
 

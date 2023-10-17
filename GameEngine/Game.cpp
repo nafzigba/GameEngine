@@ -6,8 +6,8 @@
 #include "SharedMaterials.h"
 
 #define VERBOSE false
-int mScreenWidth = 1024;
-int mScreenHeight = 768;
+int mScreenWidth = 2048;
+int mScreenHeight = mScreenWidth*3/4;
 GLFWwindow* mWindow;
 GLuint shaderProgram;
 SubMesh subMesh;

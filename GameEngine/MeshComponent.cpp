@@ -51,8 +51,8 @@ void MeshComponent::draw() const
 			// Bind vertex array object for the subMesh
 			glUseProgram(this->shaderProgram);
 			glBindVertexArray(subMesh.vao);
-			
 			SharedMaterials::setMaterial(subMesh.material);
+			glBindTexture(GL_TEXTURE_2D, subMesh.material.textureObject);
 
 			// Trigger vertex fetch for ordered rendering 
 			if (subMesh.renderMode == ORDERED) {
@@ -61,6 +61,7 @@ void MeshComponent::draw() const
 			else {
 				glDrawElements(subMesh.primitiveMode, subMesh.count, GL_UNSIGNED_INT, 0);
 			}
+			glBindTexture(GL_TEXTURE_2D, 0);
 		}
 		
 	}
@@ -102,41 +103,26 @@ SubMesh  MeshComponent::buildSubMesh(const std::vector<pntVertexData>& vertexDat
 
 	// Create the SubMesh to be configured for the vertex data
 	SubMesh subMesh;
-
-	// Generate, bind, and load the vertex array object.
-	// Store the identifier for the vertex array object in the subMesh
-	// TODO
 	glGenVertexArrays(1, &subMesh.vao);
 	glBindVertexArray(subMesh.vao);
-
-	// Create a buffer and load the vertex positions and colors into it.
-	// Store the identifier for the buffer in the subMesh.
-	// TODO
 	glGenBuffers(1, &subMesh.vertexBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, subMesh.vertexBuffer);
+	glBufferData(GL_ARRAY_BUFFER, vertexData.size() * sizeof(pntVertexData), &vertexData[0], GL_STATIC_DRAW);
 
-	// Specify the location and data format of an array of vertex 
-	// positions
-	// TODO
-
-	glBufferData(GL_ARRAY_BUFFER, vertexData.size() * sizeof(pntVertexData)
-		, &vertexData[0], GL_STATIC_DRAW);
-
-
-	// Enable the flow of vertex positions into the vertex shader
-	// TODO
 	glVertexAttribPointer(0, 4, GL_FLOAT, false, sizeof(pntVertexData) , 0);
 	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(1, 3, GL_FLOAT, false, sizeof(pntVertexData), (const void*)sizeof(vec4));
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(2, 2, GL_FLOAT, false, sizeof(pntVertexData), (const void*)(sizeof(vec4)+sizeof(vec3)));
+	glEnableVertexAttribArray(2);
+
 	// Store the number of vertices to be rendered in the subMesh
 	// TODO
 	subMesh.count = static_cast<GLuint>(vertexData.size());
-
 	// Store the renderMode in the subMesh for ORDERED rendering
 	// TODO
 	subMesh.renderMode = ORDERED;
-
 	return subMesh;
-
 } // end buildSubMesh
 
 SubMesh  MeshComponent::buildSubMesh(const std::vector<pntVertexData>& vertexData, const std::vector<unsigned int>& indices)

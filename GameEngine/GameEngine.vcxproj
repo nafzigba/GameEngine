@@ -127,12 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BradleyComponent.cpp" />
     <ClCompile Include="BuildShaderProgram.cpp" />
     <ClCompile Include="Component.cpp" />
-    <ClCompile Include="Figure1.cpp" />
-    <ClCompile Include="Figure2.cpp" />
-    <ClCompile Include="Figure3.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
@@ -147,12 +143,8 @@
     <ClCompile Include="TriangleMeshComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BradleyComponent.h" />
     <ClInclude Include="BuildShaderProgram.h" />
     <ClInclude Include="Component.h" />
-    <ClInclude Include="Figure1.h" />
-    <ClInclude Include="Figure2.h" />
-    <ClInclude Include="Figure3.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
@@ -174,6 +166,10 @@
     <None Include="shader\fragmentShader1.glsl" />
     <None Include="shader\vertexShader.glsl" />
     <None Include="shader\vertexShader1.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="textures\8k_earth_daymap.jpg" />
+    <Image Include="textures\Doberman-Pinscher.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

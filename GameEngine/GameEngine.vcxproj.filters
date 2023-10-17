@@ -33,9 +33,6 @@
     <ClCompile Include="SceneGraphNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BradleyComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BuildShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -43,15 +40,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TriangleMeshComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Figure1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Figure2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Figure3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SharedTransformations.cpp">
@@ -92,9 +80,6 @@
     <ClInclude Include="SceneGraphNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BradleyComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BuildShaderProgram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -105,15 +90,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TriangleMeshComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Figure1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Figure2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Figure3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SharedTransformations.h">
@@ -140,5 +116,13 @@
     <None Include="shader\vertexShader.glsl" />
     <None Include="shader\fragmentShader1.glsl" />
     <None Include="shader\vertexShader1.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="textures\Doberman-Pinscher.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\8k_earth_daymap.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

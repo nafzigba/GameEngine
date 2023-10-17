@@ -8,10 +8,10 @@
 #include "GameObject.h"
 
 //The initial screen width when the game starts.
-static const int initialScreenWidth = 1024;
+static const int initialScreenWidth = 2048;
 
 //The initial screen height when the game starts.
-static const int initialScreenHeight = 768;
+static const int initialScreenHeight = initialScreenWidth*3/4;
 
 // Desired maximum number of frames per second.
 static const GLint FRAMES_PER_SECOND = 60;
