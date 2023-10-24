@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArrowRotateComponent.cpp" />
     <ClCompile Include="BuildShaderProgram.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="TriangleMeshComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArrowRotateComponent.h" />
     <ClInclude Include="BuildShaderProgram.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Game.h" />
@@ -166,10 +168,13 @@
     <None Include="shader\fragmentShader1.glsl" />
     <None Include="shader\vertexShader.glsl" />
     <None Include="shader\vertexShader1.glsl" />
+    <None Include="textures\walta.avif" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\8k_earth_daymap.jpg" />
     <Image Include="textures\Doberman-Pinscher.png" />
+    <Image Include="textures\space.png" />
+    <Image Include="textures\walta.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

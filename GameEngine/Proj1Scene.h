@@ -2,6 +2,7 @@
 #include "GameEngine.h"
 #include "BuildShaderProgram.h"
 #include "Texture.h"
+#include "ArrowRotateComponent.h"
 
 class Proj1Scene : public Game
 {
@@ -12,13 +13,11 @@ class Proj1Scene : public Game
 			{ GL_FRAGMENT_SHADER, "shader/fragmentShader.glsl" },
 			{ GL_NONE, NULL } // signals that there are no more shaders 
 		};
-		
 		ShaderInfo shaders2[] = {
 			{ GL_VERTEX_SHADER, "shader/vertexShader1.glsl" },
 			{ GL_FRAGMENT_SHADER, "shader/fragmentShader1.glsl" },
 			{ GL_NONE, NULL } // signals that there are no more shaders 
 		};
-		
 
 		GLuint shaderProgram1 = BuildShaderProgram(shaders1);
 		//GLuint shaderProgram2 = BuildShaderProgram(shaders2);
@@ -26,6 +25,8 @@ class Proj1Scene : public Game
 		//SharedTransformations::setUniformBlockForShader(shaderProgram2);
 		SharedMaterials::setUniformBlockForShader(shaderProgram1);
 		//SharedMaterials::setUniformBlockForShader(shaderProgram2);
+
+
 
 
 		Material sphereMat;
@@ -45,44 +46,61 @@ class Proj1Scene : public Game
 		
 		cout << "here" << endl;
 		vector<MeshComponentPtr> figs;
+		std::shared_ptr<GameObject> solarSystem = std::make_shared<GameObject>();
+		this->addChildGameObject(solarSystem);
 		
-		for (int i = 1; i < 5; i++) {
-			MeshComponentPtr fig = std::make_shared<SphereMeshComponent>(shaderProgram1, sphereMat, 0.25f,5*i+5,8*i+8,i);
+		for (int i = 1; i < 2; i++) {
+			MeshComponentPtr fig = std::make_shared<SphereMeshComponent>(shaderProgram1, sphereMat, 0.25f,5*i*5,8*i*8,i);
 			std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>();
 			MeshComponent::addMeshComp(fig);
 			gameObject->addComponent(fig);
 			gameObject->setState(ACTIVE);
-			gameObject->setRotation(glm::rotate(glm::radians(180.0f), vec3(0.0f,1.0f,0.0f)), LOCAL);
+			//gameObject->setRotation(glm::rotate(glm::radians(180.0f), vec3(0.0f,1.0f,0.0f)), LOCAL);
 			//gameObject->setRotation(glm::rotate(glm::radians(18.0f), vec3(0.0f, 0.0f, 1.0f)), LOCAL);
-			gameObject->setPosition(vec3(.75f*i - 2.0f,.50f, 0.0f),LOCAL);
-
+			gameObject->setPosition(vec3(0.750f*i -2.0f, 0.0f, 0.0f),LOCAL);
 			spheres.push_back(gameObject);
-			this->addChildGameObject(gameObject);
+			gameObject->addComponent(std::make_shared<ArrowRotateComponent>());
+
+			solarSystem->addChildGameObject(gameObject);
 		}
-		/*
+
+		//boxObject->addComponent(std::make_shared<ArrowRotateComponent>());
+		
 		Material sphereMat2;
-		sphereMat2.ambientMat = vec4(0.75f, 0.2f, 0.250f, 1.0f);
-		sphereMat2.diffuseMat = vec4(0.75f, 0.2f, 0.250f, 1.0f);
+		sphereMat2.textureObject = Texture::GetTexture("textures/space.png")->getTextureObject();
+		sphereMat2.ambientMat = vec4(0.05f, 0.02f, 0.050f, 1.0f);
+		sphereMat2.diffuseMat = vec4(0.05f, 0.02f, 0.050f, 1.0f);
 		sphereMat2.specularMat = vec4(1.0f, 1.0f, 1.0f, 1.0f);
 		sphereMat2.emmissiveMat = vec4(0.15f, 0.16f, .10f, 1.0f);
 		sphereMat2.specularExp = 256;
 		SharedMaterials::setLight(ambientColor, diffuseColor, specularColor, posLight, dirLight);
+
+		MeshComponentPtr fig = std::make_shared<SphereMeshComponent>(shaderProgram1, sphereMat2, 100.0f,50, 50, 50);
+		std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>();
+		MeshComponent::addMeshComp(fig);
+		gameObject->addComponent(fig);
+		gameObject->setState(ACTIVE);
+		gameObject->setPosition(vec3(.0f,0.0f, 0.0f), LOCAL);
+		spheres.push_back(gameObject);
+		solarSystem->addChildGameObject(gameObject);
+
 		/*
 		for (int i = 1; i < 5; i++) {
 			//MeshComponentPtr fig = std::make_shared<SphereMeshComponent>(shaderProgram1, sphereMat, 0.5f);
-			MeshComponentPtr fig = std::make_shared<SphereMeshComponent>(shaderProgram1, sphereMat2, 0.25f, 4 * i + 4, 5 * i + 5, i);
-			glUseProgram(shaderProgram1);
+			MeshComponentPtr fig = std::make_shared<SphereMeshComponent>(shaderProgram1, sphereMat, 0.25f, 4 * i + 4, 5 * i + 5, i);
 			std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>();
 			MeshComponent::addMeshComp(fig);
 			gameObject->addComponent(fig);
 			gameObject->setState(ACTIVE);
 
 			gameObject->setPosition(vec3(.75f * i - 2.0f, -.50f, 0.0f), LOCAL);
-
 			spheres.push_back(gameObject);
-			this->addChildGameObject(gameObject);
-		}*/
-	
+			//this->addChildGameObject(gameObject);
+			solarSystem->addChildGameObject(gameObject);
+		}
+		*/
+		solarSystem->addComponent(std::make_shared<ArrowRotateComponent>());
+
 	}
 	virtual void processGameInput()
 	{

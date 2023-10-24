@@ -147,7 +147,7 @@ bool Game::initializeGraphics()
 	glGetError();
 	glEnable(GL_DEBUG_OUTPUT);
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
+	//glEnable(GL_CULL_FACE);
 	glDebugMessageCallback(openglMessageCallback, 0);
 	// Cull back faces of polygons
 	//glCullFace(GL_BACK);

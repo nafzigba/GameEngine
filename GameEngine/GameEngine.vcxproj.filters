@@ -57,6 +57,9 @@
     <ClCompile Include="SharedMaterials.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ArrowRotateComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -110,18 +113,30 @@
     <ClInclude Include="SharedMaterials.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ArrowRotateComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\fragmentShader.glsl" />
     <None Include="shader\vertexShader.glsl" />
     <None Include="shader\fragmentShader1.glsl" />
     <None Include="shader\vertexShader1.glsl" />
+    <None Include="textures\walta.avif">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\Doberman-Pinscher.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="textures\8k_earth_daymap.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\walta.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\space.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

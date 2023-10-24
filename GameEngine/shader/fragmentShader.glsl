@@ -45,11 +45,9 @@ uniform sampler2D sampler;
 
 void main()
 {
-
-	vec4 tempColor = texture(sampler, texCoord.st);
+	vec4 texColor = texture(sampler, texCoord.st);
 	vec4 illumColor = emmissiveMat;
 
-	//vec3 lightVector = vec3(0.0f,0.0f,-1.0f);
 	illumColor +=   ambientColor * ambientMat;
 
 	vec3 lightVector1 = normalize( posLight.xyz-worldPosition.xyz);
@@ -59,15 +57,12 @@ void main()
 	illumColor += max(0,dot(normalize(dirLight.xyz),worldNormal.xyz)) *  diffuseColor *  diffuseMat /2; 
 	
 	vec3 viewVector = normalize(worldEyePosition.xyz - worldPosition.xyz);
-	vec3 normal = normalize(worldNormal); // Normal vector for the fragment
+	vec3 normal = normalize(worldNormal);
     vec3 halfwayVector1 = normalize(lightVector1 + viewVector);
 	vec3 halfwayVector2 = normalize(dirLight.xyz + viewVector);
 
-	illumColor += ( specularColor* specularMat)*pow(max(dot(normal, halfwayVector1), 0.0f),  specularExp)/2;
-	illumColor += ( specularColor* specularMat)*pow(max(dot(normal, halfwayVector2), 0.0),  specularExp)/2;
-	//illumColor.z =  1.0f;
-	//fragmentColor = tempColor;
-	fragmentColor = (illumColor + tempColor)/2;
-	//fragmentColor = illumColor;
-	//fragmentColor = ambientColor;
+	illumColor += ( specularColor* specularMat)*pow(max(dot(worldNormal, halfwayVector1), 0.0f),  specularExp)/2;
+	illumColor += ( specularColor* specularMat)*pow(max(dot(worldNormal, halfwayVector2), 0.0),  specularExp)/2;
+
+	fragmentColor = (illumColor+ texColor)/2;
 }
